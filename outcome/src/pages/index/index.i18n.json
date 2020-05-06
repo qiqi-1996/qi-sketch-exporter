@@ -1,0 +1,32 @@
+{
+    "en": {
+        "layers": "Layers",
+        "artboards": "Artboards",
+
+        "ui-settings": "UI Settings",
+        "ui-darkmode": "Enable Dark Mode",
+        "ui-color": "Theme Color",
+        "ui-language": "Language",
+
+        "properties": "Properties",
+
+        "about": "About",
+        "about-powered": "Powered by Qi Sketch Exporter",
+        "about-help": "Help"
+    },
+    "zh-CN": {
+        "layers": "图层",
+        "artboards": "画板",
+
+        "ui-settings": "界面设置",
+        "ui-darkmode": "启用暗黑模式",
+        "ui-color": "主题颜色",
+        "ui-language": "语言",
+
+        "properties": "属性",
+
+        "about": "关于",
+        "about-powered": "由 Qi Sketch Exporter 支持",
+        "about-help": "使用帮助"
+    }
+}

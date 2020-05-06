@@ -4,7 +4,7 @@ dist/
 
 # Sketch Default Ignore
 
-qi-sketch-plugin.sketchplugin
+qi-sketch-exporter.sketchplugin
 node_modules
 .npm
 npm-debug.log

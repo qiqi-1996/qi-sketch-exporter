@@ -230,6 +230,7 @@ export default {
                 this.layerSelected = null;
             }
 
+            this.$emit("select", this.layerSelected);
             this.render();
         },
         hitTestLayer(layer, mouse, parent){
@@ -375,7 +376,7 @@ export default {
                             ctx.setLineDash([]);
                         }
 
-                        let tag = Math.abs(Math.round((endX - startX)/this.imageScale))+" px"
+                        let tag = UNFIX(Math.abs(Math.round((endX - startX)/this.imageScale)))+" px"
                         if(tag != "0 px"){
                             this.drawTagOnLine(ctx, tag, startX, endX, startY, endY);
                         }
@@ -422,7 +423,7 @@ export default {
                             ctx.setLineDash([]);
                         }
 
-                        let tag = Math.abs(Math.round((endX - startX)/this.imageScale))+" px"
+                        let tag = UNFIX(Math.abs(Math.round((endX - startX)/this.imageScale)))+" px"
                         if(tag != "0 px"){
                             this.drawTagOnLine(ctx, tag, startX, endX, startY, endY);
                         }
@@ -472,7 +473,7 @@ export default {
                             ctx.setLineDash([]);
                         }
 
-                        let tag = Math.abs(Math.round((endY - startY)/this.imageScale))+" px"
+                        let tag = UNFIX(Math.abs(Math.round((endY - startY)/this.imageScale)))+" px"
                         if(tag != "0 px"){
                             this.drawTagOnLine(ctx, tag, startX, endX, startY, endY);
                         }
@@ -519,7 +520,7 @@ export default {
                             ctx.setLineDash([]);
                         }
 
-                        let tag = Math.abs(Math.round((endY - startY)/this.imageScale))+" px"
+                        let tag = UNFIX(Math.abs(Math.round((endY - startY)/this.imageScale)))+" px"
                         if(tag != "0 px"){
                             this.drawTagOnLine(ctx, tag, startX, endX, startY, endY);
                         }

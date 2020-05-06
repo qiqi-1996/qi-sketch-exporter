@@ -98,6 +98,10 @@ export default function (args, context) {
 
     function extractLayer(layer, basisArtboard) {
 
+        if (layer.hidden) {
+            return null;
+        }
+
         if (layer.layers) {
             extractTotal += layer.layers.length;
         }
@@ -111,10 +115,89 @@ export default function (args, context) {
             id: layer.id,
             type: layer.type,
             name: layer.name,
+
             x: layer.frame.x,
             y: layer.frame.y,
             width: layer.frame.width,
             height: layer.frame.height,
+            shapeType: layer.frame.shapeType,
+
+            properties: {
+                sharedStyleId: layer.style.sharedStyleId,
+                
+                /*******  *******/
+                
+                text: layer.text,
+
+                /*******  *******/
+
+                opacity: layer.style.opacity,
+                // 1
+                blendingMode: layer.style.blendingMode,
+                // Normal
+                rotation: layer.transform.rotation,
+                // 0
+                flippedHorizontally: layer.transform.flippedHorizontally,
+                // false
+                flippedVertically: layer.transform.flippedVertically,
+                // false
+                borderDashPattern: layer.style.borderOptions.dashPattern,
+                // []
+
+                fills: layer.style.fills,
+                /*
+                    [
+                        {
+                            fillType: "Color",
+                            color: "#d8d8d8ff",
+                            gradient: {
+                                gradientType: 'Linear',
+                                from: { x: 0.5, y: 0 },
+                                to: { x: 0.5, y: 1 },
+                                aspectRatio: 0,
+                                stops: [ { position: 0, color: '#ffffffff' }, { position: 1, color: '#000000ff' } ] 
+                            },
+                            pattern: { patternType: 'Fill', image: null, tileScale: 1 },
+                            enabled: true
+                        }
+                    ]
+                */
+                borders: layer.style.borders,
+                /* 
+                    [
+                        {
+                            fillType: 'Color',
+                            position: 'Center',
+                            color: '#979797ff',
+                            gradient: {
+                                gradientType: 'Linear',
+                                from: { x: 0.5, y: 0 },
+                                to: { x: 0.5, y: 1 },
+                                aspectRatio: 0,
+                                stops: [ { position: 0, color: '#ffffffff' }, { position: 1, color: '#000000ff' } ] 
+                            },
+                            thickness: 1,
+                            enabled: true
+                        }
+                    ]
+                */
+
+                textColor: layer.style.textColor,
+                alignment: layer.style.alignment,
+                verticalAlignment: layer.style.verticalAlignment,
+                lineHeight: layer.style.lineHeight,
+                kerning: layer.style.kerning,
+                paragraphSpacing: layer.style.paragraphSpacing,
+                fontSize: layer.style.fontSize,
+                textTransform: layer.style.textTransform,
+                fontFamily: layer.style.fontFamily,
+                fontWeight: layer.style.fontWeight,
+                fontAxes: layer.style.fontAxes,
+                lineSpacing: layer.lineSpacing,
+                fixedWidth: layer.fixedWidth,
+                // (Text)
+            },
+
             assets: [],
             layers: []
         }
@@ -131,6 +214,7 @@ export default function (args, context) {
         }
 
         if (layer.type == "Artboard") {
+            // 导出画板预览图
             LayerExportList.push({
                 layer: layer,
                 option: {
@@ -144,6 +228,13 @@ export default function (args, context) {
             currentResult.assets.push(`${layer.id}@0.2x.png`);
             currentResult.assets.push(`${layer.id}@2x.png`);
         }
+
+        // for (let i = 0; i < currentResult.properties.fills.length; i++){
+        //     let fill = currentResult.properties.fills[0];
+        //     if (fill.pattern.image) {
+                
+        //     }
+        // }
 
         if (layer.exportFormats && layer.exportFormats.length) {
             for (let i = 0; i < layer.exportFormats.length; i++) {

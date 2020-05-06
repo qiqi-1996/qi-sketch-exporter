@@ -3,7 +3,7 @@
 
         <q-panel class="layout-left" border>
             <div class="margin-block-4">
-                <q-title class="block-title" :level="2" mode="single" colorful>Layers</q-title>
+                <q-title class="block-title" :level="2" mode="single" colorful>{{ $t("layers") }}</q-title>
 
                 <div class="block-list">
                     <q-hover
@@ -18,7 +18,7 @@
 
                 <q-divider class="block-divider"></q-divider>
 
-                <q-title class="block-title" :level="2" mode="single" colorful>Artboards</q-title>
+                <q-title class="block-title" :level="2" mode="single" colorful>{{ $t("artboards") }}</q-title>
 
                 <div class="block-list">
                     <q-hover
@@ -37,44 +37,12 @@
                     </q-hover>
                 </div>
             </div>
+        </q-panel
+        ><q-panel class="layout-content" secondary>
+            <artboard :image="currentArtboardImage" :data="currentArtboard" @select="handleSelect"></artboard>
         </q-panel>
 
-        <q-panel class="layout-content" secondary>
-            <artboard :image="currentArtboardImage" :data="currentArtboard"></artboard>
-        </q-panel>
-
-        <div :class="['layout-right', config.ui.layoutRight?'':'hidden']">
-            <div class="topbar">
-                <q-button :icon="config.ui.layoutRight?'right':'left'" style="width: 32px;" @click="toggleLayoutRight" type="primary"></q-button>
-            </div>
-
-            <span v-show="config.ui.layoutRight">
-
-                <q-panel class="panel">
-                    <q-title :level=3 colorful>UI Settings</q-title>
-
-                    <div class="option option-switch" @click="toggleDarkMode">
-                        <div class="left">
-                            <q-text>Dark Mode</q-text>
-                        </div>
-                        <div class="right">
-                            <q-switch v-model="config.ui.darkmode"></q-switch>
-                        </div>
-                    </div>
-
-                    <div class="option option-color">
-                        <q-text>Theme Color</q-text>
-                        <q-hover :config="config.ui.color" :active="config.ui.color.current==='poe'" @click.native="toggleColor('poe')"><q-color-block :size="16" color="poe" round></q-color-block></q-hover>
-                        <q-hover :config="config.ui.color" :active="config.ui.color.current==='starrynight'" @click.native="toggleColor('starrynight')"><q-color-block :size="16" color="starrynight" round></q-color-block></q-hover>
-                        <q-hover :config="config.ui.color" :active="config.ui.color.current==='enjolras'" @click.native="toggleColor('enjolras')"><q-color-block :size="16" color="enjolras" round></q-color-block></q-hover>
-                        <q-hover :config="config.ui.color" :active="config.ui.color.current==='sunflower'" @click.native="toggleColor('sunflower')"><q-color-block :size="16" color="sunflower" round></q-color-block></q-hover>
-                        <q-hover :config="config.ui.color" :active="config.ui.color.current==='spring'" @click.native="toggleColor('spring')"><q-color-block :size="16" color="spring" round></q-color-block></q-hover>
-                    </div>
-
-                </q-panel>
-
-            </span>
-        </div>
+        <layout-right :properties="selectedLayer"></layout-right>
     </div>
 </template>
 
@@ -85,7 +53,7 @@
 
 .page {
     white-space: nowrap;
-    font-size: 0px;
+    // font-size: 0px;
     width: 100%;
     height: 100%;
 }
@@ -151,69 +119,20 @@
     display: inline-block;
     vertical-align: top;
 }
-
-.layout-right {
-    position: absolute;
-    width: 320px;
-    height: 100%;
-    top: 0px;
-    right: 0px;
-
-    .topbar {
-        text-align: right;
-        margin: 2*@grid;
-    }
-
-    .panel {
-        margin: 2*@grid;
-        padding: 2*@grid;
-
-        .option-switch {
-            margin: 2*@grid 0px;
-            cursor: pointer;
-
-            .left, .right {
-                width: 50%;
-                display: inline-block;
-                vertical-align: middle;
-            }
-
-            .right {
-                pointer-events: none;
-                text-align: right;
-            }
-        }
-
-        .option-color {
-            .q-text {
-                margin-bottom: @grid;
-            }
-
-            .q-hover {
-                margin-right: @grid;
-                cursor: pointer;
-                display: inline-block;
-                text-align: center;
-                padding: 4px;
-                border-radius: 24px;
-            }
-        }
-    }
-}
-
-.layout-right[class*="hidden"]{
-    width: auto;
-    height: auto;
-}
 </style>
 
 <script>
-import store from "/store.js";
 import artboard from "./artboard.vue";
+import layoutRight from "./layoutRight.vue";
+import messages from "./index.i18n.json";
 
 export default {
+    i18n: {
+        messages
+    },
     components: {
-        artboard
+        artboard,
+        layoutRight
     },
     data(){
         return {
@@ -224,21 +143,14 @@ export default {
             currentArtboardIndex: 0,
 
             config: {
-                ui: {
-                    darkmode: store.enableDarkMode,
-                    color: {
-                        current: "poe",
-                        hover: { color: "none" },
-                        actived: { color: "secondary", border: "inherit"}
-                    },
-                    layoutRight: true
-                },
                 listItem: {
                     hover: {
                         border: "default"
                     }
                 }
-            }
+            },
+
+            selectedLayer: null
         }
     },
     computed: {
@@ -319,16 +231,9 @@ export default {
         doChangeArtboard(index){
             this.currentArtboardIndex = index;
         },
-        toggleDarkMode(){
-            store.enableDarkMode = !store.enableDarkMode;
-            this.config.ui.darkmode = store.enableDarkMode;
-        },
-        toggleColor(colorname){
-            store.color = colorname;
-            this.config.ui.color.current = colorname;
-        },
-        toggleLayoutRight(){
-            this.config.ui.layoutRight = !this.config.ui.layoutRight;
+        handleSelect(layer){
+            console.log(layer);
+            this.selectedLayer = layer;
         }
     }
 };
