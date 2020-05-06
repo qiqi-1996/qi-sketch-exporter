@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>My Docs</title>
+    <link rel="stylesheet" href="https://unpkg.com/docute@4/dist/docute.css">
+    <script src="https://unpkg.com/docute@4/dist/docute.js"></script>
+    <style>
+        .SidebarItems a, .ItemTitle span {
+            font-size: 16px !important;
+            line-height: 32px !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="docute"></div>
+    <script src="./sidebar.zh-CN.js"></script>
+    <script src="./sidebar.en.js"></script>
+    <script>
+    window.VERSION = "1.0.0"
+
+    new Docute({
+        target: '#docute',
+        title: "QI SKETCH EXPORTER",
+        darkThemeToggler: true,
+        detectSystemDarkTheme: true,
+        editLinkBase: "https://github.com/qiqi-1996/qi-sketch-exporter/blob/master/docs",
+        // https://docute.org/zh/
+
+        overrides: {
+            "/en/": {
+                language: "English",
+                sidebar: SIDEBAR_EN,
+                editLinkText: "Edit this page on GitHub",
+                nav: [
+                    {
+                        title: "Home",
+                        link: "/en/README.md"
+                    },
+                    {
+                        title: "GitHub",
+                        link: "https://github.com/qiqi-1996/qi-sketch-exporter"
+                    }
+                ],
+            },
+            "/zh-CN/": {
+                language: "简体中文",
+                sidebar: SIDEBAR_ZH_CN,
+                editLinkText: "在 GitHub 上编辑此页",
+                nav: [
+                    {
+                        title: "首页",
+                        link: "/zh-CN/README.md"
+                    },
+                    {
+                        title: "GitHub",
+                        link: "https://github.com/qiqi-1996/qi-sketch-exporter"
+                    }
+                ],
+            }
+        }
+    });
+    </script>
+</body>
+
+</html>

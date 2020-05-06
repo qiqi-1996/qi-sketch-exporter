@@ -1,0 +1,14 @@
+.vscode/
+.cache/
+dist/
+
+# Sketch Default Ignore
+
+qi-sketch-plugin.sketchplugin
+node_modules
+.npm
+npm-debug.log
+.DS_Store
+.idea
+# sketch
+# sketch-assets
