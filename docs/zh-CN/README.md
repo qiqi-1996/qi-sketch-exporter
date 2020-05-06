@@ -13,7 +13,7 @@
 ## 安装
 
 <center>
-    <a :href="`../releases/qi-sketch-exporter.${VERSION}.zip`" class="download">下载插件 Version {{VERSION}}</a>
+    <a :href="`https://qiqi-1996.github.io/qi-sketch-exporter/releases/qi-sketch-exporter.${VERSION}.zip`" class="download">下载插件 Version {{VERSION}}</a>
     <br>
     <a href="https://github.com/qiqi-1996/qi-sketch-exporter/releases">查看历史版本</a>
 </center>

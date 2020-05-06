@@ -11,7 +11,7 @@ If you have any suggestions or comments in use, please feedback on [GitHub Issue
 ## Install
 
 <center>
-    <a :href="`../releases/qi-sketch-exporter.${VERSION}.zip`" class="download">Download Version {{VERSION}}</a>
+    <a :href="`https://qiqi-1996.github.io/qi-sketch-exporter/releases/qi-sketch-exporter.${VERSION}.zip`" class="download">Download Version {{VERSION}}</a>
     <br>
     <a href="https://github.com/qiqi-1996/qi-sketch-exporter/releases">Checkout History Versions</a>
 </center>
