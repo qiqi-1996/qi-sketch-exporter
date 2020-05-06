@@ -98,7 +98,7 @@ export default function (args, context) {
 
     function extractLayer(layer, basisArtboard) {
 
-        if (layer.hidden) {
+        if (!layer || layer.hidden) {
             return null;
         }
 
@@ -123,7 +123,7 @@ export default function (args, context) {
             shapeType: layer.frame.shapeType,
 
             properties: {
-                sharedStyleId: layer.style.sharedStyleId,
+                sharedStyleId: layer.style?.sharedStyleId,
                 
                 /*******  *******/
                 
@@ -131,20 +131,20 @@ export default function (args, context) {
 
                 /*******  *******/
 
-                opacity: layer.style.opacity,
+                opacity: layer.style?.opacity,
                 // 1
-                blendingMode: layer.style.blendingMode,
+                blendingMode: layer.style?.blendingMode,
                 // Normal
-                rotation: layer.transform.rotation,
+                rotation: layer.transform?.rotation,
                 // 0
-                flippedHorizontally: layer.transform.flippedHorizontally,
+                flippedHorizontally: layer.transform?.flippedHorizontally,
                 // false
-                flippedVertically: layer.transform.flippedVertically,
+                flippedVertically: layer.transform?.flippedVertically,
                 // false
-                borderDashPattern: layer.style.borderOptions.dashPattern,
+                borderDashPattern: layer.style?.borderOptions.dashPattern,
                 // []
 
-                fills: layer.style.fills,
+                fills: layer.style?.fills,
                 /*
                     [
                         {
@@ -162,7 +162,7 @@ export default function (args, context) {
                         }
                     ]
                 */
-                borders: layer.style.borders,
+                borders: layer.style?.borders,
                 /* 
                     [
                         {
@@ -182,17 +182,17 @@ export default function (args, context) {
                     ]
                 */
 
-                textColor: layer.style.textColor,
-                alignment: layer.style.alignment,
-                verticalAlignment: layer.style.verticalAlignment,
-                lineHeight: layer.style.lineHeight,
-                kerning: layer.style.kerning,
-                paragraphSpacing: layer.style.paragraphSpacing,
-                fontSize: layer.style.fontSize,
-                textTransform: layer.style.textTransform,
-                fontFamily: layer.style.fontFamily,
-                fontWeight: layer.style.fontWeight,
-                fontAxes: layer.style.fontAxes,
+                textColor: layer.style?.textColor,
+                alignment: layer.style?.alignment,
+                verticalAlignment: layer.style?.verticalAlignment,
+                lineHeight: layer.style?.lineHeight,
+                kerning: layer.style?.kerning,
+                paragraphSpacing: layer.style?.paragraphSpacing,
+                fontSize: layer.style?.fontSize,
+                textTransform: layer.style?.textTransform,
+                fontFamily: layer.style?.fontFamily,
+                fontWeight: layer.style?.fontWeight,
+                fontAxes: layer.style?.fontAxes,
                 lineSpacing: layer.lineSpacing,
                 fixedWidth: layer.fixedWidth,
                 // (Text)
