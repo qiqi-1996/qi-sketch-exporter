@@ -1,5 +1,9 @@
 # 概述
 
+<center>
+    <img :src="`${URL_PREFIX}/assets/banner.png`" height="320px" />
+</center>
+
 **Qi Sketch Exporter** 是一个 Sketch 设计图导出插件，可以帮助你把设计图转换为适合程序开发人员预览的交接文档。例如：自动标注元素尺寸及边距、自动导出切片等等。更多功能请查看下方的[特性列表](#特性)，或者直接查看 <a href="preview/index.html">在线 DEMO</a>。
 
 <Note label="Tips">

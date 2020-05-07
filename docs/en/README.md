@@ -1,5 +1,9 @@
 # Summary
 
+<center>
+    <img :src="`${URL_PREFIX}/assets/banner.png`" height="320px" />
+</center>
+
 **Qi Sketch Exporter** is an UI design export plugin for Sketch, which can help you convert the design graphics into a handover document that suitable for developers to preview. For example: Auto mark element's size and margin, auto export slice, etc. All features can be found at [Features](#Features), or you can try it by this <a href="preview/index.html">Online Demo</a>。
 
 <Note label="Tips">
