@@ -24,7 +24,7 @@ After downloading, unzip it, and then double-click `qi-sketch-exporter.sketchplu
 
 <style>
 .download {
-    background: #009688;
+    background: #CC8800;
     text-align: center;
     color: #FFF;
     font-weight: bolder;
@@ -36,6 +36,7 @@ After downloading, unzip it, and then double-click `qi-sketch-exporter.sketchplu
 }
 .download:hover {
     text-decoration: none !important;
+    opacity: 0.75;
 }
 </style>
 

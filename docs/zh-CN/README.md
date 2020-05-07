@@ -26,7 +26,7 @@
 
 <style>
 .download {
-    background: #009688;
+    background: #CC8800;
     text-align: center;
     color: #FFF;
     font-weight: bolder;
@@ -38,6 +38,7 @@
 }
 .download:hover {
     text-decoration: none !important;
+    opacity: 0.75;
 }
 </style>
 
