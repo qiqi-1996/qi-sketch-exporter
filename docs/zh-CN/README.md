@@ -13,7 +13,7 @@
 ## 安装
 
 <center>
-    <a :href="`https://qiqi-1996.github.io/qi-sketch-exporter/releases/qi-sketch-exporter.${VERSION}.zip`" class="download">下载插件 Version {{VERSION}}</a>
+    <a :href="`${URL_PREFIX}/releases/qi-sketch-exporter.${VERSION}.zip`" class="download">下载插件 Version {{VERSION}}</a>
     <br>
     <a href="https://github.com/qiqi-1996/qi-sketch-exporter/releases">查看历史版本</a>
 </center>
@@ -55,4 +55,4 @@ MIT
 
 本项目从设计图到代码完全免费开源，不以任何方式出售和干预（谨请遵守 MIT 开源协议）插件及其全部相关文件的使用权。如果您觉得本项目对您的工作给予了很大的帮助，请考虑捐助这个项目继续发展。
 
-<ImageZoom src="/assets/donate-alipay.jpg" :border="true" width="300"/>
+<ImageZoom :src="`${URL_PREFIX}/assets/donate-alipay.jpg`" :border="true" width="300"/>

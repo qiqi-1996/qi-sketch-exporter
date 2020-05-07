@@ -10,12 +10,14 @@
 
                 <q-panel class="panel" border v-if="properties != null">
                     <q-collapse :title="$t('properties')" :title-colorful="true" :value="true">
+                        <q-divider class="collapse-divider"></q-divider>
                         <property class="property" v-for="(property, type) in parsedProperties" :key="type" :type="type" :data="property"></property>
                     </q-collapse>
                 </q-panel>
 
                 <q-panel class="panel" border>
                     <q-collapse :title="$t('ui-settings')" :title-colorful="true" :value="true">
+                        <q-divider class="collapse-divider"></q-divider>
                         <div class="option option-switch" @click="toggleDarkMode">
                             <div class="left">
                                 <q-text>{{ $t('ui-darkmode') }}</q-text>
@@ -62,6 +64,7 @@
 
                 <q-panel class="panel" border>
                     <q-collapse :title="$t('about')" :title-colorful="true" :value="true">
+                        <q-divider class="collapse-divider"></q-divider>
                         <q-footnote style="margin-bottom: 8px;">{{ $t('about-powered') }}</q-footnote>
                         <q-button icon="open" size="small" href="https://qiqi-1996.github.io/qi-sketch-exporter">{{$t("about-help")}}</q-button>
                         <q-button icon="open" size="small" href="https://github.com/qiqi-1996/qi-sketch-exporter">GitHub</q-button>
@@ -93,8 +96,8 @@
     .panel {
         margin: 2*@grid;
 
-        .q-title {
-            margin-bottom: 3*@grid;
+        .collapse-divider {
+            margin-bottom: 2*@grid;
         }
         
         .option {
