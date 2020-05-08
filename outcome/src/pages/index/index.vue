@@ -42,7 +42,7 @@
             <artboard :image="currentArtboardImage" :data="currentArtboard" @select="handleSelect"></artboard>
         </q-panel>
 
-        <layout-right :properties="selectedLayer"></layout-right>
+        <layout-right :layer="selectedLayer"></layout-right>
     </div>
 </template>
 

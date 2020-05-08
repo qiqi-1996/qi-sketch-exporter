@@ -8,7 +8,13 @@
         <transition name="transition-layout-right">
             <div style="width: 320px;" v-show="enable">
 
-                <q-panel class="panel" border v-if="properties != null">
+                <q-panel class="panel" border v-if="layer != null && layer.assets.length">
+                    <q-collapse :title="$t('assets')" :title-colorful="true" :value="true">
+                        <assets-list :data="layer.assets"></assets-list>
+                    </q-collapse>
+                </q-panel>
+                
+                <q-panel class="panel" border v-if="layer != null">
                     <q-collapse :title="$t('properties')" :title-colorful="true" :value="true">
                         <q-divider class="collapse-divider"></q-divider>
                         <property class="property" v-for="(property, type) in parsedProperties" :key="type" :type="type" :data="property"></property>
@@ -168,6 +174,7 @@
 
 <script>
 import store from "/store.js";
+import assetsList from "./assets-list/index.vue";
 import property from "./properties/index.vue";
 import messages from "./index.i18n.json";
 
@@ -176,9 +183,10 @@ export default {
         messages
     },
     components: {
-        property
+        property,
+        assetsList
     },
-    props: ["properties"],
+    props: ["layer"],
     data(){
         return {
             enable: true,
@@ -205,7 +213,7 @@ export default {
     },
     computed: {
         parsedProperties(){
-            let p = this.properties;
+            let p = this.layer;
             if(p == null){
                 return result;
             }

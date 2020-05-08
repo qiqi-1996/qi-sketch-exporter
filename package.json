@@ -1,59 +1,62 @@
 {
-    "name": "qi-sketch-exporter",
-    "version": "1.0.0",
-    "engines": {
-        "sketch": ">=3.0"
-    },
-    "skpm": {
-        "name": "Qi Sketch Exporter",
-        "manifest": "src/manifest.json",
-        "main": "qi-sketch-exporter.sketchplugin",
-        "assets": [
-            "assets/**/*"
-        ],
-        "resources": [
-            "resources/**/*.js"
-        ],
-        "sketch-assets-file": "sketch-assets/icons.sketch"
-    },
-    "scripts": {
-        "link": "skpm-link",
-        "build": "skpm-build",
-        "watch": "skpm-build --watch",
-        "start": "skpm-build --watch",
-        "start:docs": "serve docs",
-        "start:interface": "parcel serve interface/src/index.html --out-dir interface/dist --cache-dir interface/.cache",
-        "build:interface": "parcel build interface/src/index.html --out-dir interface/dist --cache-dir interface/.cache --no-minify --no-content-hash && node interface/after-build.js",
-        "start:outcome": "node outcome/before-start.js && parcel serve outcome/src/index.html                 --out-dir outcome/dist --cache-dir outcome/.cache",
-        "build:outcome": "node outcome/before-start.js && parcel build outcome/src/index.html --public-url ./ --out-dir outcome/dist --cache-dir outcome/.cache --no-minify --no-content-hash && node outcome/after-build.js",
-        "postinstall": "npm run build && skpm-link"
-    },
-    "devDependencies": {
-        "@skpm/builder": "^0.7.4",
-        "@skpm/extract-loader": "^2.0.2",
-        "@skpm/file-loader": "^2.0.1",
-        "@vue/component-compiler-utils": "^3.1.2",
-        "css-loader": "~1.0.0",
-        "extract-loader": "~5.0.1",
-        "html-loader": "^0.5.5",
-        "less": "^3.11.1",
-        "parcel": "^1.12.4",
-        "style-loader": "^1.2.1",
-        "vue-template-compiler": "^2.6.11"
-    },
-    "resources": [
-        "resources/**/*.js"
+  "name": "qi-sketch-exporter",
+  "version": "1.0.1",
+  "engines": {
+    "sketch": ">=3.0"
+  },
+  "skpm": {
+    "name": "Qi Sketch Exporter",
+    "manifest": "src/manifest.json",
+    "main": "qi-sketch-exporter.sketchplugin",
+    "assets": [
+      "assets/**/*"
     ],
-    "dependencies": {
-        "@qiqi1996/qi-design-vue": "^0.3.0",
-        "animate.css": "^3.7.2",
-        "shortid": "^2.2.15",
-        "sketch-module-web-view": "^3.1.4",
-        "vue": "^2.6.11",
-        "vue-hot-reload-api": "^2.3.4",
-        "vue-i18n": "^8.17.4",
-        "vue-router": "^3.1.6",
-        "vuex": "^3.3.0"
-    },
-    "author": "SaekiRaku <guoqiqi@qiqi1996.com>"
+    "resources": [
+      "resources/**/*.js"
+    ],
+    "sketch-assets-file": "sketch-assets/icons.sketch"
+  },
+  "scripts": {
+    "link": "skpm-link",
+    "build": "skpm-build",
+    "watch": "skpm-build --watch",
+    "start": "skpm-build --watch",
+    "start:docs": "serve docs",
+    "start:interface": "parcel serve interface/src/index.html --out-dir interface/dist --cache-dir interface/.cache",
+    "build:interface": "parcel build interface/src/index.html --out-dir interface/dist --cache-dir interface/.cache --no-minify --no-content-hash && node interface/after-build.js",
+    "start:outcome": "node outcome/before-start.js && parcel serve outcome/src/index.html                 --out-dir outcome/dist --cache-dir outcome/.cache",
+    "build:outcome": "node outcome/before-start.js && parcel build outcome/src/index.html --public-url ./ --out-dir outcome/dist --cache-dir outcome/.cache --no-minify --no-content-hash && node outcome/after-build.js",
+    "publish": "node publish.js",
+    "postinstall": "npm run build && skpm-link"
+  },
+  "devDependencies": {
+    "@skpm/builder": "^0.7.4",
+    "@skpm/extract-loader": "^2.0.2",
+    "@skpm/file-loader": "^2.0.1",
+    "@vue/component-compiler-utils": "^3.1.2",
+    "css-loader": "~1.0.0",
+    "extract-loader": "~5.0.1",
+    "html-loader": "^0.5.5",
+    "less": "^3.11.1",
+    "parcel": "^1.12.4",
+    "style-loader": "^1.2.1",
+    "cross-zip": "^3.0.0",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "resources": [
+    "resources/**/*.js"
+  ],
+  "dependencies": {
+    "@qiqi1996/qi-design-vue": "^0.3.0",
+    "animate.css": "^3.7.2",
+    "json-format": "^1.0.1",
+    "shortid": "^2.2.15",
+    "sketch-module-web-view": "^3.1.4",
+    "vue": "^2.6.11",
+    "vue-hot-reload-api": "^2.3.4",
+    "vue-i18n": "^8.17.4",
+    "vue-router": "^3.1.6",
+    "vuex": "^3.3.0"
+  },
+  "author": "SaekiRaku <guoqiqi@qiqi1996.com>"
 }

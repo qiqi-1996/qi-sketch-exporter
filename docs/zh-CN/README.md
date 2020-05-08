@@ -14,10 +14,15 @@
 
 </Note>
 
+<Note type="warning">
+
+Qi Sketch Exporter 是一个正在开发中的项目（包括项目中所使用的前端组件库 [Qi Design Vue](https://qiqi-1996.github.io/qi-design-vue/) 也处于 Alpha 测试阶段），在将本项目应用于商业环境中前请悉知本项目出现错误和风险的可能性。
+</Note>
+
 ## 安装
 
 <center>
-    <a :href="`${URL_PREFIX}/releases/qi-sketch-exporter.${VERSION}.zip`" class="download">下载插件 Version {{VERSION}}</a>
+    <a :href="`${URL_PREFIX}/releases/qi-sketch-exporter@${VERSION}.zip`" class="download">下载插件 Version {{VERSION}}</a>
     <br>
     <a href="https://github.com/qiqi-1996/qi-sketch-exporter/releases">查看历史版本</a>
 </center>

@@ -8,6 +8,8 @@
         "ui-color": "Theme Color",
         "ui-language": "Language",
 
+        "assets": "Assets",
+
         "properties": "Properties",
 
         "about": "About",
@@ -22,6 +24,8 @@
         "ui-darkmode": "启用暗黑模式",
         "ui-color": "主题颜色",
         "ui-language": "语言",
+
+        "assets": "资源",
 
         "properties": "属性",
 

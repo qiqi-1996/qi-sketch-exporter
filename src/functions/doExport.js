@@ -249,8 +249,19 @@ export default function (args, context) {
                         "use-id-for-name": true
                     }
                 })
+
+                let filename = layer.id;
+                if (format.prefix) {
+                    filename = prefix + filename;
+                } else if (format.suffix) {
+                    filename = filename + suffix
+                } else {
+                    filename = filename + "@" + format.size
+                }
+
+                filename = filename + "." + format.fileFormat;
                 
-                currentResult.assets.push(`${layer.id}${format.suffix}.${format.fileFormat}`);
+                currentResult.assets.push(filename);
 
             }
         }

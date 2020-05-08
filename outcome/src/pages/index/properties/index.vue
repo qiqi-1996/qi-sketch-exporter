@@ -9,6 +9,8 @@ import defaults from "./default.vue";
 import position from "./position.vue";
 import size from "./size.vue";
 import alignment from "./alignment.vue";
+import ptext from "./text.vue";
+
 import messages from "./properties.i18n.json";
 
 const components = {
@@ -16,7 +18,8 @@ const components = {
 
     position,
     size,
-    alignment
+    alignment,
+    ptext
 }
 
 const componentsNameMap = Object.keys(components);
@@ -34,7 +37,9 @@ export default {
         displayComponent(){
             if(componentsNameMap.indexOf(this.type) != -1){
                 return this.type;
-            }else{
+            } else if(this.type === "content"){
+                return "ptext";
+            } else {
                 return "defaults";
             }
         }

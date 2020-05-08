@@ -21,6 +21,7 @@
     <script src="./sidebar.zh-CN.js"></script>
     <script src="./sidebar.en.js"></script>
     <script>
+    // https://docute.org/zh/
     new Docute({
         target: '#docute',
         title: "QI SKETCH EXPORTER",
@@ -34,39 +35,11 @@
         darkThemeToggler: true,
         detectSystemDarkTheme: true,
         editLinkBase: "https://github.com/qiqi-1996/qi-sketch-exporter/blob/master/docs",
-        // https://docute.org/zh/
+        ...I18N_EN,
 
         overrides: {
-            "/en/": {
-                language: "English",
-                sidebar: SIDEBAR_EN,
-                editLinkText: "Edit this page on GitHub",
-                nav: [
-                    {
-                        title: "Home",
-                        link: "/en/README.md"
-                    },
-                    {
-                        title: "GitHub",
-                        link: "https://github.com/qiqi-1996/qi-sketch-exporter"
-                    }
-                ],
-            },
-            "/zh-CN/": {
-                language: "简体中文",
-                sidebar: SIDEBAR_ZH_CN,
-                editLinkText: "在 GitHub 上编辑此页",
-                nav: [
-                    {
-                        title: "首页",
-                        link: "/zh-CN/README.md"
-                    },
-                    {
-                        title: "GitHub",
-                        link: "https://github.com/qiqi-1996/qi-sketch-exporter"
-                    }
-                ],
-            }
+            "/en/": I18N_EN,
+            "/zh-CN/": I18N_ZH_CN
         }
     });
     </script>

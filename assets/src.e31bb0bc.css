@@ -6637,6 +6637,13 @@ Qi Design Standard
   background-size: 25px;
 }
 
+.container .q-button[data-v-d672e4] {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 /*
 
 Qi Design Standard
@@ -6669,8 +6676,8 @@ Qi Design Standard
 .layout-right .panel[data-v-417d0e] {
   margin: 16px;
 }
-.layout-right .panel .q-title[data-v-417d0e] {
-  margin-bottom: 24px;
+.layout-right .panel .collapse-divider[data-v-417d0e] {
+  margin-bottom: 16px;
 }
 .layout-right .panel .option[data-v-417d0e] {
   margin-bottom: 16px;
