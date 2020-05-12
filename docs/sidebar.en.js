@@ -32,8 +32,8 @@ var I18N_EN = {
             title: "For Developer",
             children: [
                 {
-                    title: "Source Code",
-                    link: "/en/developer/source.md",
+                    title: "Source Summary",
+                    link: "/en/developer/summary.md",
                 }
             ]
         },

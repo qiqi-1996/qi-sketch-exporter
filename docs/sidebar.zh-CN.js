@@ -29,8 +29,8 @@ var I18N_ZH_CN = {
         {
             title: "开发人员文档",
             children: [{
-                title: "源码说明",
-                link: "/zh-CN/developer/source.md",
+                title: "源码概述",
+                link: "/zh-CN/developer/summary.md",
             }]
         },
     ]
