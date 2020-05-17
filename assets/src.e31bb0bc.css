@@ -6630,11 +6630,38 @@ Qi Design Standard
   height: 100%;
 }
 
+/*
+
+Qi Design Standard
+
+*/
+/******* Config *******/
+/******* Layouts *******/
+/******* Colors *******/
+/******* Fonts *******/
+/******* Easing *******/
+/******* Functions *******/
+.clearfloat[data-v-f5c9d8]::after {
+  content: '';
+  display: block;
+  clear: both;
+}
 .container[data-v-f5c9d8] {
   width: 100%;
   height: 100%;
   background: url(background.44453073.png);
   background-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loading *[data-v-f5c9d8] {
+  display: inline-block;
+  vertical-align: middle;
+}
+.loading .q-icon[data-v-f5c9d8] {
+  margin-right: 8px;
+  font-size: 32px;
 }
 
 .container .q-button[data-v-d672e4] {

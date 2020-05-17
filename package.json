@@ -1,6 +1,6 @@
 {
   "name": "qi-sketch-exporter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "engines": {
     "sketch": ">=3.0"
   },
@@ -47,7 +47,7 @@
     "resources/**/*.js"
   ],
   "dependencies": {
-    "@qiqi1996/qi-design-vue": "^0.3.0",
+    "@qiqi1996/qi-design-vue": "^0.3.1",
     "animate.css": "^3.7.2",
     "json-format": "^1.0.1",
     "shortid": "^2.2.15",

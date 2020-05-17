@@ -1,6 +1,15 @@
 <template>
     <div class="container" ref="container">
+        <div class="loading" v-show="imageState==='loading'">
+            <q-icon name="loading" animation="rotate"></q-icon>
+            <q-text>{{ $t("loading") }}</q-text>
+        </div>
+        <div class="loading" v-show="imageState==='error'">
+            <q-icon name="sad"></q-icon>
+            <q-text>{{ $t("error") }}</q-text>
+        </div>
         <canvas
+            v-show="imageState === 'done'"
             ref="canvas"
             style="width: 100%; height: 100%;"
             :width="stageWidth+'px'"
@@ -14,16 +23,36 @@
 </template>
 
 <style lang="less" scoped>
+@import "~@qiqi1996/qi-design-vue/standard.less";
+
 .container {
     width: 100%;
     height: 100%;
     background: url(./background.png);
     background-size: 25px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.loading {
+    * {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .q-icon {
+        margin-right: @grid;
+        font-size: 32px;
+    }
+}
+
 </style>
 
 <script>
 import store from "/store.js";
+import messages from "./artboard.i18n.json";
 
 const tagHeight = HD(24);
 
@@ -77,6 +106,9 @@ var MARKY = function(val){
 };
 
 export default {
+    i18n: {
+        messages
+    },
     props: {
         image: String,
         data: Object
@@ -89,6 +121,8 @@ export default {
     },
     data() {
         return {
+            imageState: "none",
+
             stageWidth: 0,
             stageHeight: 0,
 
@@ -110,9 +144,12 @@ export default {
     watch: {
         image: {
             handler(url) {
+                this.imageState = "loading";
+
                 this.imageObj = new Image();
                 this.imageObj.src = url;
                 this.imageObj.onload = () => {
+                    this.imageState = "done";
                     const image = this.imageObj;
 
                     if (image.width > image.height) {
@@ -135,6 +172,9 @@ export default {
 
                     this.render();
                 };
+                this.imageObj.onerror = () => {
+                    this.imageState = "error";
+                }
             },
             immediate: true
         }

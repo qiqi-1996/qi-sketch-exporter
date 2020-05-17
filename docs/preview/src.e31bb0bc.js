@@ -25911,7 +25911,18 @@ var staticRenderFns = []
           };
         })());
       
-},{"./core/framework/index.vue":"bVBX","/store.js":"iz0v"}],"T18n":[function(require,module,exports) {
+},{"./core/framework/index.vue":"bVBX","/store.js":"iz0v"}],"QzoE":[function(require,module,exports) {
+module.exports = {
+  "en": {
+    "loading": "Loading ...",
+    "error": "Loading Failed."
+  },
+  "zh-CN": {
+    "loading": "加载中 ...",
+    "error": "加载失败"
+  }
+};
+},{}],"T18n":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -25921,8 +25932,38 @@ exports.default = void 0;
 
 var _store = _interopRequireDefault(require("/store.js"));
 
+var _artboardI18n = _interopRequireDefault(require("./artboard.i18n.json"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -26003,6 +26044,9 @@ var MARKY = function MARKY(val) {
 };
 
 var _default = {
+  i18n: {
+    messages: _artboardI18n.default
+  },
   props: {
     image: String,
     data: Object
@@ -26015,6 +26059,7 @@ var _default = {
   },
   data: function data() {
     return {
+      imageState: "none",
       stageWidth: 0,
       stageHeight: 0,
       imageObj: null,
@@ -26034,10 +26079,12 @@ var _default = {
       handler: function handler(url) {
         var _this = this;
 
+        this.imageState = "loading";
         this.imageObj = new Image();
         this.imageObj.src = url;
 
         this.imageObj.onload = function () {
+          _this.imageState = "done";
           var image = _this.imageObj;
 
           if (image.width > image.height) {
@@ -26058,6 +26105,10 @@ var _default = {
           _this.imageY = _this.stageHeight / 2 - rheight / 2;
 
           _this.render();
+        };
+
+        this.imageObj.onerror = function () {
+          _this.imageState = "error";
         };
       },
       immediate: true
@@ -26464,7 +26515,7 @@ exports.default = _default;
     
         /* template */
         Object.assign($f5c9d8, (function () {
-          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"container",staticClass:"container"},[_c('canvas',{ref:"canvas",staticStyle:{"width":"100%","height":"100%"},attrs:{"width":_vm.stageWidth+'px',"height":_vm.stageHeight+'px'},on:{"&mousedown":function($event){return _vm.handleMouseDown($event)},"&mousemove":function($event){return _vm.handleMouseMove($event)},"&mouseup":function($event){return _vm.handleMouseUp($event)},"&mousewheel":function($event){return _vm.handleMouseWheel($event)}}})])}
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"container",staticClass:"container"},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.imageState==='loading'),expression:"imageState==='loading'"}],staticClass:"loading"},[_c('q-icon',{attrs:{"name":"loading","animation":"rotate"}}),_vm._v(" "),_c('q-text',[_vm._v(_vm._s(_vm.$t("loading")))])],1),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.imageState==='error'),expression:"imageState==='error'"}],staticClass:"loading"},[_c('q-icon',{attrs:{"name":"sad"}}),_vm._v(" "),_c('q-text',[_vm._v(_vm._s(_vm.$t("error")))])],1),_vm._v(" "),_c('canvas',{directives:[{name:"show",rawName:"v-show",value:(_vm.imageState === 'done'),expression:"imageState === 'done'"}],ref:"canvas",staticStyle:{"width":"100%","height":"100%"},attrs:{"width":_vm.stageWidth+'px',"height":_vm.stageHeight+'px'},on:{"&mousedown":function($event){return _vm.handleMouseDown($event)},"&mousemove":function($event){return _vm.handleMouseMove($event)},"&mouseup":function($event){return _vm.handleMouseUp($event)},"&mousewheel":function($event){return _vm.handleMouseWheel($event)}}})])}
 var staticRenderFns = []
 
           return {
@@ -26476,7 +26527,69 @@ var staticRenderFns = []
           };
         })());
       
-},{"/store.js":"iz0v","./background.png":[["background.44453073.png","qkM7"],"qkM7"]}],"miTp":[function(require,module,exports) {
+},{"/store.js":"iz0v","./artboard.i18n.json":"QzoE","./background.png":[["background.44453073.png","qkM7"],"qkM7"]}],"LMbN":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  props: {
+    data: {
+      type: Array,
+      default: function _default() {
+        return [];
+      }
+    }
+  }
+};
+exports.default = _default;
+        var $d672e4 = exports.default || module.exports;
+      
+      if (typeof $d672e4 === 'function') {
+        $d672e4 = $d672e4.options;
+      }
+    
+        /* template */
+        Object.assign($d672e4, (function () {
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container"},_vm._l((_vm.data),function(item,index){return _c('q-button',{key:index,attrs:{"icon":"download","href":("./assets/" + item)}},[_vm._v("\n    "+_vm._s(item)+"\n    ")])}),1)}
+var staticRenderFns = []
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: "data-v-d672e4",
+            functional: undefined
+          };
+        })());
+      
+},{}],"miTp":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27290,6 +27403,48 @@ var staticRenderFns = []
           };
         })());
       
+},{"./base/base-extends.js":"Jvgx"}],"J0ps":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _baseExtends = _interopRequireDefault(require("./base/base-extends.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+var _default = {
+  extends: _baseExtends.default
+};
+exports.default = _default;
+        var $b40aad = exports.default || module.exports;
+      
+      if (typeof $b40aad === 'function') {
+        $b40aad = $b40aad.options;
+      }
+    
+        /* template */
+        Object.assign($b40aad, (function () {
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('layout',{attrs:{"title":_vm.name}},[_c('q-input',{attrs:{"value":_vm.data.toString()}})],1)}
+var staticRenderFns = []
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
 },{"./base/base-extends.js":"Jvgx"}],"V2PI":[function(require,module,exports) {
 "use strict";
 
@@ -27306,6 +27461,8 @@ var _size = _interopRequireDefault(require("./size.vue"));
 
 var _alignment = _interopRequireDefault(require("./alignment.vue"));
 
+var _text = _interopRequireDefault(require("./text.vue"));
+
 var _propertiesI18n = _interopRequireDefault(require("./properties.i18n.json"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -27320,7 +27477,8 @@ var components = {
   defaults: _default2.default,
   position: _position.default,
   size: _size.default,
-  alignment: _alignment.default
+  alignment: _alignment.default,
+  ptext: _text.default
 };
 var componentsNameMap = Object.keys(components);
 var _default = {
@@ -27336,6 +27494,8 @@ var _default = {
     displayComponent: function displayComponent() {
       if (componentsNameMap.indexOf(this.type) != -1) {
         return this.type;
+      } else if (this.type === "content") {
+        return "ptext";
       } else {
         return "defaults";
       }
@@ -27363,7 +27523,7 @@ var staticRenderFns = []
           };
         })());
       
-},{"./default.vue":"IIGx","./position.vue":"AgW5","./size.vue":"wARA","./alignment.vue":"XBRo","./properties.i18n.json":"tIFu"}],"kIXD":[function(require,module,exports) {
+},{"./default.vue":"IIGx","./position.vue":"AgW5","./size.vue":"wARA","./alignment.vue":"XBRo","./text.vue":"J0ps","./properties.i18n.json":"tIFu"}],"kIXD":[function(require,module,exports) {
 module.exports = {
   "en": {
     "layers": "Layers",
@@ -27372,6 +27532,7 @@ module.exports = {
     "ui-darkmode": "Enable Dark Mode",
     "ui-color": "Theme Color",
     "ui-language": "Language",
+    "assets": "Assets",
     "properties": "Properties",
     "about": "About",
     "about-powered": "Powered by Qi Sketch Exporter",
@@ -27384,6 +27545,7 @@ module.exports = {
     "ui-darkmode": "启用暗黑模式",
     "ui-color": "主题颜色",
     "ui-language": "语言",
+    "assets": "资源",
     "properties": "属性",
     "about": "关于",
     "about-powered": "由 Qi Sketch Exporter 支持",
@@ -27400,7 +27562,9 @@ exports.default = void 0;
 
 var _store = _interopRequireDefault(require("/store.js"));
 
-var _index = _interopRequireDefault(require("./properties/index.vue"));
+var _index = _interopRequireDefault(require("./assets-list/index.vue"));
+
+var _index2 = _interopRequireDefault(require("./properties/index.vue"));
 
 var _indexI18n = _interopRequireDefault(require("./index.i18n.json"));
 
@@ -27571,14 +27735,24 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   i18n: {
     messages: _indexI18n.default
   },
   components: {
-    property: _index.default
+    property: _index2.default,
+    assetsList: _index.default
   },
-  props: ["properties"],
+  props: ["layer"],
   data: function data() {
     return {
       enable: true,
@@ -27612,7 +27786,7 @@ var _default = {
   },
   computed: {
     parsedProperties: function parsedProperties() {
-      var p = this.properties;
+      var p = this.layer;
 
       if (p == null) {
         return result;
@@ -27662,7 +27836,7 @@ exports.default = _default;
     
         /* template */
         Object.assign($417d0e, (function () {
-          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{class:['layout-right', _vm.enable?'':'hidden']},[_c('div',{staticClass:"topbar"},[_c('q-button',{staticStyle:{"width":"32px"},attrs:{"icon":_vm.enable?'right':'left',"type":"primary"},on:{"click":_vm.toggle}})],1),_vm._v(" "),_c('transition',{attrs:{"name":"transition-layout-right"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.enable),expression:"enable"}],staticStyle:{"width":"320px"}},[(_vm.properties != null)?_c('q-panel',{staticClass:"panel",attrs:{"border":""}},[_c('q-collapse',{attrs:{"title":_vm.$t('properties'),"title-colorful":true,"value":true}},_vm._l((_vm.parsedProperties),function(property,type){return _c('property',{key:type,staticClass:"property",attrs:{"type":type,"data":property}})}),1)],1):_vm._e(),_vm._v(" "),_c('q-panel',{staticClass:"panel",attrs:{"border":""}},[_c('q-collapse',{attrs:{"title":_vm.$t('ui-settings'),"title-colorful":true,"value":true}},[_c('div',{staticClass:"option option-switch",on:{"click":_vm.toggleDarkMode}},[_c('div',{staticClass:"left"},[_c('q-text',[_vm._v(_vm._s(_vm.$t('ui-darkmode')))])],1),_vm._v(" "),_c('div',{staticClass:"right"},[_c('q-switch',{model:{value:(_vm.darkmode),callback:function ($$v) {_vm.darkmode=$$v},expression:"darkmode"}})],1)]),_vm._v(" "),_c('div',{staticClass:"option option-color"},[_c('q-text',{staticClass:"title"},[_vm._v(_vm._s(_vm.$t('ui-color')))]),_vm._v(" "),_c('div',{staticClass:"flex"},[_c('q-hover',{attrs:{"config":_vm.color,"active":_vm.color.current==='poe'},nativeOn:{"click":function($event){return _vm.toggleColor('poe')}}},[_c('q-color-block',{attrs:{"size":16,"color":"poe","round":""}})],1),_vm._v(" "),_c('q-hover',{attrs:{"config":_vm.color,"active":_vm.color.current==='starrynight'},nativeOn:{"click":function($event){return _vm.toggleColor('starrynight')}}},[_c('q-color-block',{attrs:{"size":16,"color":"starrynight","round":""}})],1),_vm._v(" "),_c('q-hover',{attrs:{"config":_vm.color,"active":_vm.color.current==='enjolras'},nativeOn:{"click":function($event){return _vm.toggleColor('enjolras')}}},[_c('q-color-block',{attrs:{"size":16,"color":"enjolras","round":""}})],1),_vm._v(" "),_c('q-hover',{attrs:{"config":_vm.color,"active":_vm.color.current==='sunflower'},nativeOn:{"click":function($event){return _vm.toggleColor('sunflower')}}},[_c('q-color-block',{attrs:{"size":16,"color":"sunflower","round":""}})],1),_vm._v(" "),_c('q-hover',{attrs:{"config":_vm.color,"active":_vm.color.current==='spring'},nativeOn:{"click":function($event){return _vm.toggleColor('spring')}}},[_c('q-color-block',{attrs:{"size":16,"color":"spring","round":""}})],1)],1)],1),_vm._v(" "),_c('div',{staticClass:"option option-language"},[_c('q-text',[_vm._v(_vm._s(_vm.$t('ui-language')))]),_vm._v(" "),_c('q-radio',{attrs:{"value":"en"},model:{value:(_vm.language),callback:function ($$v) {_vm.language=$$v},expression:"language"}},[_vm._v("English")]),_vm._v(" "),_c('q-radio',{attrs:{"value":"zh-CN"},model:{value:(_vm.language),callback:function ($$v) {_vm.language=$$v},expression:"language"}},[_vm._v("简体中文")])],1)])],1),_vm._v(" "),_c('q-panel',{staticClass:"panel",attrs:{"border":""}},[_c('q-collapse',{attrs:{"title":_vm.$t('about'),"title-colorful":true,"value":true}},[_c('q-footnote',{staticStyle:{"margin-bottom":"8px"}},[_vm._v(_vm._s(_vm.$t('about-powered')))]),_vm._v(" "),_c('q-button',{attrs:{"icon":"open","size":"small","href":"https://qiqi-1996.github.io/qi-sketch-exporter"}},[_vm._v(_vm._s(_vm.$t("about-help")))]),_vm._v(" "),_c('q-button',{attrs:{"icon":"open","size":"small","href":"https://github.com/qiqi-1996/qi-sketch-exporter"}},[_vm._v("GitHub")])],1)],1)],1)])],1)}
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{class:['layout-right', _vm.enable?'':'hidden']},[_c('div',{staticClass:"topbar"},[_c('q-button',{staticStyle:{"width":"32px"},attrs:{"icon":_vm.enable?'right':'left',"type":"primary"},on:{"click":_vm.toggle}})],1),_vm._v(" "),_c('transition',{attrs:{"name":"transition-layout-right"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.enable),expression:"enable"}],staticStyle:{"width":"320px"}},[(_vm.layer != null && _vm.layer.assets.length)?_c('q-panel',{staticClass:"panel",attrs:{"border":""}},[_c('q-collapse',{attrs:{"title":_vm.$t('assets'),"title-colorful":true,"value":true}},[_c('assets-list',{attrs:{"data":_vm.layer.assets}})],1)],1):_vm._e(),_vm._v(" "),(_vm.layer != null)?_c('q-panel',{staticClass:"panel",attrs:{"border":""}},[_c('q-collapse',{attrs:{"title":_vm.$t('properties'),"title-colorful":true,"value":true}},[_c('q-divider',{staticClass:"collapse-divider"}),_vm._v(" "),_vm._l((_vm.parsedProperties),function(property,type){return _c('property',{key:type,staticClass:"property",attrs:{"type":type,"data":property}})})],2)],1):_vm._e(),_vm._v(" "),_c('q-panel',{staticClass:"panel",attrs:{"border":""}},[_c('q-collapse',{attrs:{"title":_vm.$t('ui-settings'),"title-colorful":true,"value":true}},[_c('q-divider',{staticClass:"collapse-divider"}),_vm._v(" "),_c('div',{staticClass:"option option-switch",on:{"click":_vm.toggleDarkMode}},[_c('div',{staticClass:"left"},[_c('q-text',[_vm._v(_vm._s(_vm.$t('ui-darkmode')))])],1),_vm._v(" "),_c('div',{staticClass:"right"},[_c('q-switch',{model:{value:(_vm.darkmode),callback:function ($$v) {_vm.darkmode=$$v},expression:"darkmode"}})],1)]),_vm._v(" "),_c('div',{staticClass:"option option-color"},[_c('q-text',{staticClass:"title"},[_vm._v(_vm._s(_vm.$t('ui-color')))]),_vm._v(" "),_c('div',{staticClass:"flex"},[_c('q-hover',{attrs:{"config":_vm.color,"active":_vm.color.current==='poe'},nativeOn:{"click":function($event){return _vm.toggleColor('poe')}}},[_c('q-color-block',{attrs:{"size":16,"color":"poe","round":""}})],1),_vm._v(" "),_c('q-hover',{attrs:{"config":_vm.color,"active":_vm.color.current==='starrynight'},nativeOn:{"click":function($event){return _vm.toggleColor('starrynight')}}},[_c('q-color-block',{attrs:{"size":16,"color":"starrynight","round":""}})],1),_vm._v(" "),_c('q-hover',{attrs:{"config":_vm.color,"active":_vm.color.current==='enjolras'},nativeOn:{"click":function($event){return _vm.toggleColor('enjolras')}}},[_c('q-color-block',{attrs:{"size":16,"color":"enjolras","round":""}})],1),_vm._v(" "),_c('q-hover',{attrs:{"config":_vm.color,"active":_vm.color.current==='sunflower'},nativeOn:{"click":function($event){return _vm.toggleColor('sunflower')}}},[_c('q-color-block',{attrs:{"size":16,"color":"sunflower","round":""}})],1),_vm._v(" "),_c('q-hover',{attrs:{"config":_vm.color,"active":_vm.color.current==='spring'},nativeOn:{"click":function($event){return _vm.toggleColor('spring')}}},[_c('q-color-block',{attrs:{"size":16,"color":"spring","round":""}})],1)],1)],1),_vm._v(" "),_c('div',{staticClass:"option option-language"},[_c('q-text',[_vm._v(_vm._s(_vm.$t('ui-language')))]),_vm._v(" "),_c('q-radio',{attrs:{"value":"en"},model:{value:(_vm.language),callback:function ($$v) {_vm.language=$$v},expression:"language"}},[_vm._v("English")]),_vm._v(" "),_c('q-radio',{attrs:{"value":"zh-CN"},model:{value:(_vm.language),callback:function ($$v) {_vm.language=$$v},expression:"language"}},[_vm._v("简体中文")])],1)],1)],1),_vm._v(" "),_c('q-panel',{staticClass:"panel",attrs:{"border":""}},[_c('q-collapse',{attrs:{"title":_vm.$t('about'),"title-colorful":true,"value":true}},[_c('q-divider',{staticClass:"collapse-divider"}),_vm._v(" "),_c('q-footnote',{staticStyle:{"margin-bottom":"8px"}},[_vm._v(_vm._s(_vm.$t('about-powered')))]),_vm._v(" "),_c('q-button',{attrs:{"icon":"open","size":"small","href":"https://qiqi-1996.github.io/qi-sketch-exporter"}},[_vm._v(_vm._s(_vm.$t("about-help")))]),_vm._v(" "),_c('q-button',{attrs:{"icon":"open","size":"small","href":"https://github.com/qiqi-1996/qi-sketch-exporter"}},[_vm._v("GitHub")])],1)],1)],1)])],1)}
 var staticRenderFns = []
 
           return {
@@ -27674,7 +27848,7 @@ var staticRenderFns = []
           };
         })());
       
-},{"/store.js":"iz0v","./properties/index.vue":"V2PI","./index.i18n.json":"kIXD"}],"NCfl":[function(require,module,exports) {
+},{"/store.js":"iz0v","./assets-list/index.vue":"LMbN","./properties/index.vue":"V2PI","./index.i18n.json":"kIXD"}],"NCfl":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27940,7 +28114,7 @@ exports.default = _default;
     
         /* template */
         Object.assign($89173c, (function () {
-          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"page"},[_c('q-panel',{staticClass:"layout-left",attrs:{"border":""}},[_c('div',{staticClass:"margin-block-4"},[_c('q-title',{staticClass:"block-title",attrs:{"level":2,"mode":"single","colorful":""}},[_vm._v(_vm._s(_vm.$t("layers")))]),_vm._v(" "),_c('div',{staticClass:"block-list"},_vm._l((_vm.pagesList),function(page,index){return _c('q-hover',{key:index,staticClass:"list-item",attrs:{"config":_vm.config.listItem,"active":_vm.currentPageIndex == index},on:{"click":function($event){return _vm.doChangePage(index)}}},[_vm._v(_vm._s(page))])}),1),_vm._v(" "),_c('q-divider',{staticClass:"block-divider"}),_vm._v(" "),_c('q-title',{staticClass:"block-title",attrs:{"level":2,"mode":"single","colorful":""}},[_vm._v(_vm._s(_vm.$t("artboards")))]),_vm._v(" "),_c('div',{staticClass:"block-list"},_vm._l((_vm.artboardsList),function(artboard,index){return _c('q-hover',{key:index,staticClass:"list-item",attrs:{"config":_vm.config.listItem,"active":_vm.currentArtboardIndex == index},on:{"click":function($event){return _vm.doChangeArtboard(index)}}},[_c('q-panel',{staticClass:"preview",style:({ backgroundImage: ("url(" + (artboard.preview) + ")") }),attrs:{"border":""}}),_vm._v(" "),_c('div',{staticClass:"info"},[_c('q-text',{attrs:{"mode":"single"}},[_c('span',{staticClass:"inner-text"},[_vm._v(_vm._s(artboard.name))])]),_vm._v(" "),_c('q-footnote',{attrs:{"mode":"single"}},[_c('span',{staticClass:"inner-text"},[_vm._v(_vm._s(artboard.description))])])],1)],1)}),1)],1)]),_c('q-panel',{staticClass:"layout-content",attrs:{"secondary":""}},[_c('artboard',{attrs:{"image":_vm.currentArtboardImage,"data":_vm.currentArtboard},on:{"select":_vm.handleSelect}})],1),_vm._v(" "),_c('layout-right',{attrs:{"properties":_vm.selectedLayer}})],1)}
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"page"},[_c('q-panel',{staticClass:"layout-left",attrs:{"border":""}},[_c('div',{staticClass:"margin-block-4"},[_c('q-title',{staticClass:"block-title",attrs:{"level":2,"mode":"single","colorful":""}},[_vm._v(_vm._s(_vm.$t("layers")))]),_vm._v(" "),_c('div',{staticClass:"block-list"},_vm._l((_vm.pagesList),function(page,index){return _c('q-hover',{key:index,staticClass:"list-item",attrs:{"config":_vm.config.listItem,"active":_vm.currentPageIndex == index},on:{"click":function($event){return _vm.doChangePage(index)}}},[_vm._v(_vm._s(page))])}),1),_vm._v(" "),_c('q-divider',{staticClass:"block-divider"}),_vm._v(" "),_c('q-title',{staticClass:"block-title",attrs:{"level":2,"mode":"single","colorful":""}},[_vm._v(_vm._s(_vm.$t("artboards")))]),_vm._v(" "),_c('div',{staticClass:"block-list"},_vm._l((_vm.artboardsList),function(artboard,index){return _c('q-hover',{key:index,staticClass:"list-item",attrs:{"config":_vm.config.listItem,"active":_vm.currentArtboardIndex == index},on:{"click":function($event){return _vm.doChangeArtboard(index)}}},[_c('q-panel',{staticClass:"preview",style:({ backgroundImage: ("url(" + (artboard.preview) + ")") }),attrs:{"border":""}}),_vm._v(" "),_c('div',{staticClass:"info"},[_c('q-text',{attrs:{"mode":"single"}},[_c('span',{staticClass:"inner-text"},[_vm._v(_vm._s(artboard.name))])]),_vm._v(" "),_c('q-footnote',{attrs:{"mode":"single"}},[_c('span',{staticClass:"inner-text"},[_vm._v(_vm._s(artboard.description))])])],1)],1)}),1)],1)]),_c('q-panel',{staticClass:"layout-content",attrs:{"secondary":""}},[_c('artboard',{attrs:{"image":_vm.currentArtboardImage,"data":_vm.currentArtboard},on:{"select":_vm.handleSelect}})],1),_vm._v(" "),_c('layout-right',{attrs:{"layer":_vm.selectedLayer}})],1)}
 var staticRenderFns = []
 
           return {

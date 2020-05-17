@@ -1,0 +1,10 @@
+{
+    "en": {
+        "loading": "Loading ...",
+        "error": "Loading Failed."
+    },
+    "zh-CN": {
+        "loading": "加载中 ...",
+        "error": "加载失败"
+    }
+}

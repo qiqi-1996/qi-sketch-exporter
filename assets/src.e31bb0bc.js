@@ -25911,7 +25911,18 @@ var staticRenderFns = []
           };
         })());
       
-},{"./core/framework/index.vue":"bVBX","/store.js":"iz0v"}],"T18n":[function(require,module,exports) {
+},{"./core/framework/index.vue":"bVBX","/store.js":"iz0v"}],"QzoE":[function(require,module,exports) {
+module.exports = {
+  "en": {
+    "loading": "Loading ...",
+    "error": "Loading Failed."
+  },
+  "zh-CN": {
+    "loading": "加载中 ...",
+    "error": "加载失败"
+  }
+};
+},{}],"T18n":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -25921,8 +25932,38 @@ exports.default = void 0;
 
 var _store = _interopRequireDefault(require("/store.js"));
 
+var _artboardI18n = _interopRequireDefault(require("./artboard.i18n.json"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -26003,6 +26044,9 @@ var MARKY = function MARKY(val) {
 };
 
 var _default = {
+  i18n: {
+    messages: _artboardI18n.default
+  },
   props: {
     image: String,
     data: Object
@@ -26015,6 +26059,7 @@ var _default = {
   },
   data: function data() {
     return {
+      imageState: "none",
       stageWidth: 0,
       stageHeight: 0,
       imageObj: null,
@@ -26034,10 +26079,12 @@ var _default = {
       handler: function handler(url) {
         var _this = this;
 
+        this.imageState = "loading";
         this.imageObj = new Image();
         this.imageObj.src = url;
 
         this.imageObj.onload = function () {
+          _this.imageState = "done";
           var image = _this.imageObj;
 
           if (image.width > image.height) {
@@ -26058,6 +26105,10 @@ var _default = {
           _this.imageY = _this.stageHeight / 2 - rheight / 2;
 
           _this.render();
+        };
+
+        this.imageObj.onerror = function () {
+          _this.imageState = "error";
         };
       },
       immediate: true
@@ -26464,7 +26515,7 @@ exports.default = _default;
     
         /* template */
         Object.assign($f5c9d8, (function () {
-          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"container",staticClass:"container"},[_c('canvas',{ref:"canvas",staticStyle:{"width":"100%","height":"100%"},attrs:{"width":_vm.stageWidth+'px',"height":_vm.stageHeight+'px'},on:{"&mousedown":function($event){return _vm.handleMouseDown($event)},"&mousemove":function($event){return _vm.handleMouseMove($event)},"&mouseup":function($event){return _vm.handleMouseUp($event)},"&mousewheel":function($event){return _vm.handleMouseWheel($event)}}})])}
+          var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"container",staticClass:"container"},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.imageState==='loading'),expression:"imageState==='loading'"}],staticClass:"loading"},[_c('q-icon',{attrs:{"name":"loading","animation":"rotate"}}),_vm._v(" "),_c('q-text',[_vm._v(_vm._s(_vm.$t("loading")))])],1),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.imageState==='error'),expression:"imageState==='error'"}],staticClass:"loading"},[_c('q-icon',{attrs:{"name":"sad"}}),_vm._v(" "),_c('q-text',[_vm._v(_vm._s(_vm.$t("error")))])],1),_vm._v(" "),_c('canvas',{directives:[{name:"show",rawName:"v-show",value:(_vm.imageState === 'done'),expression:"imageState === 'done'"}],ref:"canvas",staticStyle:{"width":"100%","height":"100%"},attrs:{"width":_vm.stageWidth+'px',"height":_vm.stageHeight+'px'},on:{"&mousedown":function($event){return _vm.handleMouseDown($event)},"&mousemove":function($event){return _vm.handleMouseMove($event)},"&mouseup":function($event){return _vm.handleMouseUp($event)},"&mousewheel":function($event){return _vm.handleMouseWheel($event)}}})])}
 var staticRenderFns = []
 
           return {
@@ -26476,7 +26527,7 @@ var staticRenderFns = []
           };
         })());
       
-},{"/store.js":"iz0v","./background.png":[["background.44453073.png","qkM7"],"qkM7"]}],"LMbN":[function(require,module,exports) {
+},{"/store.js":"iz0v","./artboard.i18n.json":"QzoE","./background.png":[["background.44453073.png","qkM7"],"qkM7"]}],"LMbN":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
