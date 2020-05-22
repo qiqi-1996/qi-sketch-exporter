@@ -1,6 +1,9 @@
 {
     "en": {
         "copy": "Copy",
+        "copy-default": "Default to Copy",
+        "copy-success": "Copy Successful",
+        "copy-failed": "Your browser does not support direct copying, please press #{key} to copy manually.",
 
         "name": "Name",
         "position": "Position",
@@ -13,6 +16,9 @@
     },
     "zh-CN": {
         "copy": "复制",
+        "copy-default": "默认复制项",
+        "copy-success": "复制成功",
+        "copy-failed": "您的浏览器不支持直接复制，请按下 #{key} 手动复制。",
 
         "name": "名称",
         "position": "位置",

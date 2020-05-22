@@ -1,5 +1,5 @@
 <template>
-    <layout :title="name">
+    <layout :title="name" :copy="copy">
         <q-input class="x" :value="data.x.toString()">
             <q-footnote class="prefix">X</q-footnote><q-divider type="vertical"></q-divider>
         </q-input>
@@ -39,6 +39,15 @@
 import BaseExtends from "./base/base-extends.js";
 
 export default {
-    extends: BaseExtends
+    extends: BaseExtends,
+    computed: {
+        copy(){
+            return [
+                { title: "top & left", value: `top: ${this.data.y}px;\nleft: ${this.data.x}px`},
+                { title: "margin", value: `margin-top: ${this.data.y}px;\nmargin-left: ${this.data.x}px`},
+                { title: "padding", value: `padding-top: ${this.data.y}px;\npadding-left: ${this.data.x}px`},
+            ]
+        }
+    }
 }
 </script>

@@ -5,7 +5,7 @@
             <div class="slot">
                 <slot></slot>
             </div>
-            <copy class="copy"></copy>
+            <copy class="copy" :copy="copy"></copy>
         </div>
     </div>
 </template>
@@ -46,7 +46,8 @@ export default {
         copy
     },
     props: {
-        title: String
+        title: String,
+        copy: Array
     }
 }
 </script>

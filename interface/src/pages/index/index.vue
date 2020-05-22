@@ -4,12 +4,20 @@
         <q-divider></q-divider>
 
         <div class="content">
-            <q-form-group v-model="selected">
-                <div class="pages" v-for="(page, index) in list" :key="index">
-                    <q-footnote class="page-name">{{page.name}}</q-footnote>
-                    <q-checkbox v-for="artboard in page.artboards" :key="artboard.id" :value="artboard.id">{{artboard.name}}</q-checkbox>
+            <div class="pages" v-for="(page, index) in list" :key="index">
+                
+                <div class="collapse-header" @click="toggleCollapse(page.id)">
+                    <q-footnote>{{page.name}} ( {{getSelectedNumbers(page.id)}} / {{page.artboards.length}} )</q-footnote>
+                    <div class="right">
+                        <q-footnote class="select-all" @click.native.stop="toggleSelectAll(page.id)">{{ isAllSelected(page.id)?"Unselect All":"Select All" }}</q-footnote>
+                        <q-icon :class="['indicator', page.expand?'active':'']" name="right" container="q-footnote"></q-icon>
+                    </div>
                 </div>
-            </q-form-group>
+
+                <q-collapse v-model="page.expand">
+                    <q-checkbox v-for="artboard in page.artboards" :key="artboard.id" :value="artboard.id" v-model="artboard.selected">{{artboard.name}}</q-checkbox>
+                </q-collapse>
+            </div>
         </div>
 
         <q-panel class="controller">
@@ -34,11 +42,7 @@
     overflow: auto;
 
     .pages {
-        margin-bottom: 4*@grid;
-
-        .page-name {
-            margin-bottom: @grid;
-        }
+        margin-bottom: 3*@grid;
 
         .q-checkbox {
             display: block;
@@ -49,6 +53,29 @@
 
     .pages:last-of-type {
         margin: 0px;
+    }
+
+    .collapse-header {
+        padding: @grid 0px;
+        cursor: pointer;
+
+        .right {
+            float: right;
+            margin-top: 2px;
+        }
+
+        .select-all {
+            margin-right: @grid;
+        }
+
+        .active {
+            transform: rotate(90deg);
+        }
+
+        * {
+            display: inline-block;
+            vertical-align: middle;
+        }
     }
 }
 
@@ -106,14 +133,22 @@ var mock = [
 export default {
     data(){
         return {
-            selected: [],
-            list: mock
+            list: this.preprocess(mock)
+        }
+    },
+    computed: {
+        selected(){
+            let result = [];
+            this.list.forEach(page=>{
+                result = result.concat(page.artboards.filter(artboard=>artboard.selected).map(artboard=>artboard.id));
+            })
+            return result;
         }
     },
     mounted(){
         window.doExportList = (data)=>{
             console.log(data, typeof data);
-            this.list = data;
+            this.list = this.preprocess(data);
         }
 
         window.doGetSavePath = (data)=>{
@@ -142,9 +177,55 @@ export default {
         window.postMessage("doExportList");
     },
     methods: {
+        preprocess(data) {
+            return data.map(page=>{
+                page.expand = true;
+                page.artboards = page.artboards.map(artboard=>{
+                    artboard.selected = false;
+                    return artboard;
+                })
+                return page;
+            })
+        },
+        toggleCollapse(pageID){
+            for(let i in this.list){
+                let page = this.list[i]
+                if(page.id == pageID){
+                    page.expand = !page.expand;
+                    break;
+                }
+            }
+        },
+        getSelectedNumbers(pageID){
+            for(let i in this.list){
+                let page = this.list[i]
+                if(page.id == pageID){
+                    return page.artboards.filter(artboard=>artboard.selected).length;
+                }
+            }
+        },
+        isAllSelected(pageID){
+            for(let i in this.list){
+                let page = this.list[i]
+                if(page.id == pageID){
+                    return (page.artboards.filter(artboard=>artboard.selected).length == page.artboards.length);
+                }
+            }
+        },
+        toggleSelectAll(pageID){
+            let state = !this.isAllSelected(pageID);
+            for(let i in this.list){
+                let page = this.list[i]
+                if(page.id == pageID){
+                    page.artboards.forEach(artboard=>{
+                        artboard.selected = state;
+                    })
+                }
+            }
+        },
         duang(){
             window.postMessage("doGetSavePath");
-            console.log(this.selected);;
+            console.log(this.selected);
         }
     }
 }
